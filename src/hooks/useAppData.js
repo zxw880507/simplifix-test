@@ -14,9 +14,7 @@ export default function useAppData() {
     orders: [],
     users: [],
   });
-  useEffect(() => {
-    window.localStorage.setItem("cookie", JSON.stringify(cookie));
-  }, [cookie]);
+  
 
   useEffect(() => {
     axios.get("/login").then((res) => {

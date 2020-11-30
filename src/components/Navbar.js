@@ -138,7 +138,10 @@ export default function Navbar(props) {
   let history = useHistory();
 
   const logout = () => {
-    return axios.post("/logout").then((res) => setCookie(res.data));
+    return axios.post("/logout").then((res) => {
+      setCookie(res.data);
+      window.localStorage.setItem("cookie", JSON.stringify(cookie));
+    });
   };
 
   const handleProfileMenuOpen = (event) => {
