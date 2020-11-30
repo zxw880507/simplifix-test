@@ -4,13 +4,20 @@ import io from "socket.io-client";
 import { dispatch } from "../helpers/dataHelpers";
 
 export default function useAppData() {
-  const [cookie, setCookie] = useState({ user: null });
+  const [cookie, setCookie] = useState(() => {
+    const stickyCookie = window.localStorage.getItem("cookie");
+    return stickyCookie ? JSON.parse(stickyCookie) : { user: null };
+  });
   const [state, setState] = useState({
     gigs: [],
     categories: [],
     orders: [],
     users: [],
   });
+  useEffect(() => {
+    window.localStorage.setItem("cookie", JSON.stringify(cookie));
+  }, [cookie]);
+
   useEffect(() => {
     axios.get("/login").then((res) => {
       setCookie({ ...res.data });
