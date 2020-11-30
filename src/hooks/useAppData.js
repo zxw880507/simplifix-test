@@ -6,7 +6,7 @@ import { dispatch } from "../helpers/dataHelpers";
 export default function useAppData() {
   const [cookie, setCookie] = useState(() => {
     const stickyCookie = window.localStorage.getItem("cookie");
-    return stickyCookie ? JSON.parse(stickyCookie) : { user: null };
+    return stickyCookie.user ? JSON.parse(stickyCookie) : { user: null };
   });
   const [state, setState] = useState({
     gigs: [],
