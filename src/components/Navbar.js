@@ -139,8 +139,7 @@ export default function Navbar(props) {
 
   const logout = () => {
     return axios.post("/logout").then((res) => {
-      setCookie(res.data);
-      window.localStorage.setItem("cookie", JSON.stringify(cookie));
+      setCookie(res.data)
     });
   };
 
